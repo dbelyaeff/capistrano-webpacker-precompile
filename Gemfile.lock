@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    capistrano-webpacker-precompile (0.1.2)
+    capistrano-webpacker-precompile (0.2)
       capistrano (~> 3.1)
 
 GEM
