@@ -1,6 +1,6 @@
-config = YAML.load_file Rails.root.join('config','webpacker.yml')
+config = YAML.load_file'config/webpacker.yml'
 
-namespace :assets do
+namespace :webpacker do
   desc 'Precompile assets locally and then rsync to web servers'
   task :precompile do
     run_locally do
