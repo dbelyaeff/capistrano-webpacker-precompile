@@ -5,8 +5,8 @@ namespace :webpacker do
   task :precompile do
     run_locally do
       with rails_env: :production do
-        execute :rails, 'webpacker:clobber'
-        execute :rails, 'webpacker:compile'
+        execute :rails, 'webpacker:clobber >> /dev/null'
+        execute :rails, 'webpacker:compile >> /dev/null'
       end
     end
 
