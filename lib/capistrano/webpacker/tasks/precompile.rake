@@ -5,15 +5,15 @@ namespace :webpacker do
   task :precompile do
     run_locally do
       with rails_env: :production do
-        execute :rails, 'webpacker:clobber'
-        execute :rails, 'webpacker:compile'
+        execute :rails, 'webpacker:clobber >> /dev/null'
+        execute :rails, 'webpacker:compile >> /dev/null'
       end
     end
 
     on roles(:web), in: :parallel do |server|
       run_locally do
         execute :rsync,
-          "-a --delete ./public/#{config['production']['source_entry_path']}/ #{fetch(:user)}@#{server.hostname}:#{shared_path}/public/#{config['production']['source_entry_path']}/"
+          "-a --delete-after ./public/#{config['production']['source_entry_path']}/ #{server.user || fetch(:user)}@#{server.hostname}:#{shared_path}/public/#{config['production']['source_entry_path']}/"
       end
     end
 
